@@ -23,7 +23,7 @@ declare -x FIND="find" #set to gfind to use homebrew's GNU findutils on OSX Yose
 declare -x SED="sed"
 declare -x DIR=""
 declare -x RM="rm"
-declare -rx UNRARALL_VERSION="0.5.0"
+declare -rx UNRARALL_VERSION="5.9.0"
 declare -ix FORCE=0
 declare -ix VERBOSE=0
 declare -ix QUIET=0
@@ -813,13 +813,7 @@ for file in $(find_wrapper "$DIR" -depth -iregex '.*\.(rar|001)$'); do
     fi
   fi
 
-  # check file really is a rar file
-  if [[ ! "`file --mime "${file}"`" =~ $MATCHRARMIME ]]; then
-    message error "Skipping file \"${file}\" because it does not appear to be a valid rar file."
-    # Treat this as a failure so we exit with a non zero exit code
-    let FAIL_COUNT=FAIL_COUNT+1
-    continue
-  fi
+
 
   let COUNT=COUNT+1
 
